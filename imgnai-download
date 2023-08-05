@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+if [ -z "$1" ]; then
+    echo "URL is invalid"
+    exit 1
+fi
+
+echo "Download directory: $(pwd)"
+
+n=$(ls -A | tr -d [:blank:] | tr -d 'image.png' | tail -1)
+index=""
+
+if echo -n $n | grep -qE "^[0-9]+$"; then
+    index=$((n + 1))
+else
+    index="1"
+fi
+
+echo "Please wait..."
+
+curl -s -H "Cache-Control: no-cache, no-store, must-revalidate" -o image$index.png $1
+
+echo "image$index.png has been downloaded!"
