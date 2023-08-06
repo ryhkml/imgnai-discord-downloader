@@ -9,7 +9,7 @@ fi
 
 echo "Download directory: $(pwd)"
 
-n=$(ls -A | tr -d [:blank:] | tr -d 'image.png' | tail -1)
+n=$(ls -A | tr -d [:blank:] | tr -d 'image.png' | sort -n | tail -1)
 index=""
 
 if echo -n $n | grep -qE "^[0-9]+$"; then
